@@ -53,3 +53,9 @@ win64
 /stamp*
 /build*
 /install
+
+
+
+
+.idea
+cmake-build-debug

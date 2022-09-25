@@ -6,6 +6,7 @@ set (CMAKE_SUPPRESS_REGENERATION TRUE)
 
 set (CMAKE_CONFIGURATION_TYPES Release Debug RelWithDebInfo CACHE INTERNAL "" FORCE)
 
+SET(CMAKE_CXX_FLAGS_DEBUG "$ENV{CXXFLAGS} -O0 -Wall -g")
 # macro: include patched file if it exists
 macro (OCCT_INCLUDE_CMAKE_FILE BEING_INCLUDED_FILE)
   if (BUILD_PATCH AND EXISTS "${BUILD_PATCH}/${BEING_INCLUDED_FILE}.cmake")
@@ -128,7 +129,8 @@ endif()
 
 # copy samples to install directory
 set (INSTALL_SAMPLES OFF CACHE BOOL "${INSTALL_SAMPLES_DESCR}")
-
+#set (INSTALL_DIR "/Users/a/program/occt76")
+set (CMAKE_INSTALL_PREFIX "/Users/a/program/occt76")
 # install dir of the project
 if (NOT DEFINED INSTALL_DIR)
   # set default install directory for Windows
