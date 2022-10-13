@@ -1,12 +1,15 @@
 cmake_minimum_required (VERSION 2.8.12 FATAL_ERROR)
-
+cmake_policy(SET CMP0054 NEW)
 set (CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/adm/cmake")
 
 set (CMAKE_SUPPRESS_REGENERATION TRUE)
 
 set (CMAKE_CONFIGURATION_TYPES Release Debug RelWithDebInfo CACHE INTERNAL "" FORCE)
 
-SET(CMAKE_CXX_FLAGS_DEBUG "$ENV{CXXFLAGS} -O0 -Wall -g")
+SET(CMAKE_CXX_FLAGS_DEBUG  "${CMAKE_CXX_FLAGS} -O0 -Wall -g")
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0 -Wall -g")
+
+
 # macro: include patched file if it exists
 macro (OCCT_INCLUDE_CMAKE_FILE BEING_INCLUDED_FILE)
   if (BUILD_PATCH AND EXISTS "${BUILD_PATCH}/${BEING_INCLUDED_FILE}.cmake")
@@ -129,11 +132,13 @@ endif()
 
 # copy samples to install directory
 set (INSTALL_SAMPLES OFF CACHE BOOL "${INSTALL_SAMPLES_DESCR}")
-#set (INSTALL_DIR "/Users/a/program/occt76")
-if (LINUX)
-set (CMAKE_INSTALL_PREFIX "/home/a/program/occt76")
+
+if (UNIX)
+set (CMAKE_INSTALL_PREFIX "/home/a/program/OCCT76")
+set (INSTALL_DIR "/home/a/program/OCCT76")
 elseif(APPLE)
   set (CMAKE_INSTALL_PREFIX "/Users/a/program/occt76")
+  set (INSTALL_DIR "/Users/a/program/occt76")
 endif()
 # install dir of the project
 if (NOT DEFINED INSTALL_DIR)

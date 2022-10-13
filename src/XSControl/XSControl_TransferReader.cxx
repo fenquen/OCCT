@@ -816,7 +816,7 @@ Standard_Integer XSControl_TransferReader::TransferOne
   //  seule difference entre TransferRoots et TransferOne
   Standard_Integer res = 0;
   Handle(Standard_Transient) obj = ent;
-  TP.Transfer (obj, theProgress);
+  TP.Transfer (obj, theProgress); // 慢
   if (theProgress.UserBreak())
     return res;
   myTP->SetRoot (obj);

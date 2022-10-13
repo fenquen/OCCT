@@ -259,7 +259,7 @@ Standard_Boolean  XSControl_Reader::TransferEntity
   if (start.IsNull()) return Standard_False;
   const Handle(XSControl_TransferReader) &TR = thesession->TransferReader();
   TR->BeginTransfer();
-  if (TR->TransferOne (start, Standard_True, theProgress) == 0) return Standard_False;
+  if (TR->TransferOne (start, Standard_True, theProgress) == 0) return Standard_False; // 慢
   TopoDS_Shape sh = TR->ShapeResult(start);
   //ShapeExtend_Explorer STU;
   //SMH May 00: allow empty shapes (STEP CAX-IF, external references)
